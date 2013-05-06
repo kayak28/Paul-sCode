@@ -287,6 +287,7 @@ int main()
                 
                 if(case7 == 1)
                 {
+                    bool exists = false;
                     std::cout << "\nEnter the title of the item: ";
                     cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
                     getline(std::cin, itemsearch1);
@@ -296,17 +297,23 @@ int main()
                     {
                         if(bookCollection[i]->getTitle() != itemsearch1)
                         {
-                            std::cout << "\nThis book doesn't exists in the array.\n";
-                            break;
+                           exists = false;
                         }
                         else if(bookCollection[i]->getTitle() == itemsearch1)
                         {
-                            std::cout << "\n---Book Information---" << endl;
-                            bookCollection[i]->printAll(cout);
-                            std::cout << "\n";
-                            break;
+                            exists = true;
                         }
                     }//end for loop
+                    if(exists)
+                    {
+                        std::cout << "\n---Book Information---\n";
+                        bookCollection[i]->printAll(cout);
+                        std::cout << "\n";
+                    }
+                    else
+                    {
+                        std::cout << "Book does not exsist in the array\n";
+                    }
                 }//end of if statement
                 
                 else if(case7 == 2)
